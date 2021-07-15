@@ -1,4 +1,4 @@
-package cn.xiaoyes.summerstudy.set;
+package cn.xiaoyes.summerstudy.aggregate.set;
 
 import java.util.HashSet;
 import java.util.Iterator;

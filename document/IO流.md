@@ -109,8 +109,30 @@
 
 * Reader
 
+  ![](images/io_reader.png)
+
   * FileReader
+
+    **常用构造**
+
+    ```java
+    new FileReader(String fileName);
+    new FileReader(File file);
+    ```
+
+    
+
+    **常用方法**
+
+    ```java
+    public int read();// 每次读取单个字符，返回该字符，如果到文件末尾返回-1
+    public int read(char cbuf[]);// 批量读取多个字符到数组，返回读取到的字符数，如果到文件末尾返回-1
+    ```
+
+    
+
   * BufferedReader
+
   * InputStreamReader
 
 #### 输出流(Outputstream Wtiter)
@@ -150,8 +172,33 @@
 
 * Writer
 
+  ![](images/io_writer.png)
+
   * FileWriter
+
+    **常用构造**
+
+    ```java
+    new FileWriter(String fileName);
+    new FileWriter(File file，true);// true表示是否为追加模式
+    ```
+
+    **常用方法**
+
+    ```java
+    public void write(int c);// 写入单个字符
+    public void write(char cbuf[]);// 写入字符数组
+    public void write(char cbuf[], int off, int len);// 写入字符数组并指定范围
+    write(String str);// 写入字符串
+    write(String str, int off, int len);// 写入字符串并指定长度
+    
+    public void flush();// 刷新(写入文件)
+    ```
+
+    
+
   * BufferedWriter
+
   * OutputStreamWriter
 
 ### Properties

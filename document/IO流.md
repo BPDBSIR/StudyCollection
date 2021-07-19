@@ -146,6 +146,20 @@
 
   * BufferedReader
 
+    **常用构造**
+
+    ```java
+    public BufferedReader(Reader in)
+    ```
+
+    **常用方法**
+
+    ```java
+    public String readLine();// 单行读取 如果返回结果为null时，则文件读取完毕
+    
+    public void close();// 关闭流(内部节点流会自动关闭)
+    ```
+
   * InputStreamReader
 
 #### 输出流(Outputstream Wtiter)
@@ -202,8 +216,8 @@
     public void write(int c);// 写入单个字符
     public void write(char cbuf[]);// 写入字符数组
     public void write(char cbuf[], int off, int len);// 写入字符数组并指定范围
-    write(String str);// 写入字符串
-    write(String str, int off, int len);// 写入字符串并指定长度
+    public void write(String str);// 写入字符串
+    public void write(String str, int off, int len);// 写入字符串并指定长度
     
     public void flush();// 刷新(写入文件)
     ```
@@ -211,6 +225,26 @@
     
 
   * BufferedWriter
+
+    **常用构造**
+
+    ```java
+    public BufferedWriter(Writer out)
+    ```
+
+    **常用方法**
+
+    ```java
+    public void write(int c);// 写入单个字符
+    public void write(char cbuf[]);// 写入字符数组
+    public void write(char cbuf[], int off, int len);// 写入字符数组并指定范围
+    public void write(String str);// 写入字符串
+    public void write(String str, int off, int len);// 写入字符串并指定长度
+    
+    public void close();// 关闭流(内部节点流会自动关闭)
+    ```
+
+    
 
   * OutputStreamWriter
 

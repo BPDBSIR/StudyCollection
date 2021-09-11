@@ -26,7 +26,7 @@ public class Test01 {
             }
         });*/
 
-        HttpRequest request = new HttpRequest("https://www.hetianlab.com/expc.do?w=exp_ass&amp;ec=ECID9d6c0ca797abec2016090509444000001");
+        HttpRequest request = new HttpRequest("https://www.hetianlab.com/expc.do?w=exp_ass&ec=ECID9d6c0ca797abec2016090509444000001");
         request.setMaxRedirectCount(0);
         HttpResponse response = request.execute();
         Map<String, List<String>> headers = response.headers();

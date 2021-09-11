@@ -10,40 +10,74 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HeTianLab {
+public class HTLab {
     public static void main(String[] args) {
         ForestConfiguration configuration = ForestConfiguration.configuration();
         ApiService service = configuration.createInstance(ApiService.class);
-        /*HashMap<String, String> params = new HashMap<>();
+        HashMap<String, String> params = new HashMap<>();
         params.put("directId", "CCIDda35-285b-4589-9177-3afeae6fd192");
-        *//* 三大章节 *//*
-        BaseResponse<Chapter> chapter = service.querySystemChapter(params);
-
-
-        params.put("directId", chapter.message.get(0).chapterId);
-        *//* 每一章中得所有节 *//*
+//         三大章节
         List<Chapter> chapters = service.querySystemChapter(params).message;
-
-        Map<String, String> sectionParams = new HashMap<>();
-        sectionParams.put("chapterId", chapters.get(0).chapterId);
-        List<Section> sections = service.querySection(sectionParams).message;
-//        sections.forEach(System.out::println);
-
-        List<Fragment> fragments = service.queryGuideFragment("", sections.get(0).getEcid()).message;
-        fragments.forEach(System.out::println);*/
-        System.out.println(service.requestLocation());
+        for (Chapter chapter : chapters) {
+            System.out.println(chapter);
+            params.put("directId", chapter.chapterId);
+            List<Chapter> message = service.querySystemChapter(params).message;
+            for (Chapter son : message) {
+                System.out.println("\r\r==" + son);
+                /*Map<String, String> sectionParams = new HashMap<>();
+                sectionParams.put("chapterId", son.getChapterId());
+                List<Section> sections = service.querySection(sectionParams).message;
+                for (Section section : sections) {
+                    System.out.println("\r\r====" + section);
+                }*/
+            }
+        }
+//
+//        System.out.println("asdddddddddddd");
+//        params.put("directId", chapter.message.get(0).chapterId);
+////         每一章中得所有节
+//        List<Chapter> chapters = service.querySystemChapter(params).message;
+//        for (Chapter chapter1 : chapters) {
+//            System.out.println(chapter1);
+//        }
+//
+//        Map<String, String> sectionParams = new HashMap<>();
+//        sectionParams.put("chapterId", chapters.get(0).chapterId);
+//        List<Section> sections = service.querySection(sectionParams).message;
+////        sections.forEach(System.out::println);
+//
+//        List<Fragment> fragments = service.queryGuideFragment("", sections.get(0).getEcid()).message;
+//        fragments.forEach(System.out::println);
+//        System.out.println(service.requestLocation());
 
 
     }
 
     interface ApiService {
 
+        /**
+         * 查询章节
+         * @param params
+         * @return
+         */
         @Post(url = "https://www.hetianlab.com/systemManageAction!querySystemChapter.action")
         BaseResponse<Chapter> querySystemChapter(@FormBody Map<String, String> params);
 
+        /**
+         * 查询一个章节下所有的小节
+         * @param params
+         * @return
+         */
         @Post(url = "https://www.hetianlab.com/newExp!queryExpByCcid.action")
         BaseResponse<Section> querySection(@FormBody Map<String, String> params);
 
+
+        /**
+         * 详细教程查询
+         * @param ceid
+         * @param ecid
+         * @return
+         */
         @Post(url = "https://www.hetianlab.com/newExp!queryGuideByCeid.action")
         BaseResponse<Fragment> queryGuideFragment(@Body("ceid") String ceid, @Body("ecid") String ecid);
 
@@ -64,6 +98,7 @@ public class HeTianLab {
      * @param <T>
      */
     static class BaseResponse<T> {
+
         private String result;
 
         private List<T> message;
